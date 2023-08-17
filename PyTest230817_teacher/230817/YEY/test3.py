@@ -11,9 +11,14 @@ while(decimal > 0):
 print(result)
 
 print("============ 문자열 역순으로 변환하기 =================================")
-str = "abcdefghi"
-print(f"문자열 : {str}")
-print(str[len(str):0:-1])
+str = "i love you"
+# print(f"문자열 : {str}")
+# print(str[len(str):0:-1])
+revers_str = ''
+for i in str :
+    revers_str = i + revers_str
+print(revers_str)
+
 
 
 print("=========== 구구단을 하자 ==========================================")
