@@ -11,6 +11,13 @@ while cnt <= 5 :
     cnt += 1
 
 
+# 터틀을 매개변수로 받는 방법
+# import turtle
+
+# def funTur(t):
+#     t = turtle.Turtle()
+
+
 
 
 
