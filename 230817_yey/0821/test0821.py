@@ -1,5 +1,6 @@
 from collections import deque
 import turtle
+import datetime
 
 # strList = "l love you"
 # for char in range(len(strList)) :
@@ -17,7 +18,7 @@ while cnt <= 5 :
 # def funTur(t):
 #     t = turtle.Turtle()
 
-
+print(datetime.date(2000, 3, 26))
 
 
 

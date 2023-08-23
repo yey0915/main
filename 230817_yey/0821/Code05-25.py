@@ -2,9 +2,11 @@ from tkinter import *
 
 ## 함수 선언 부분 ##
 # 매개변수 : 파일명
+# 이미지를 읽어서 메모리에 올림
 def loadImage(fname) :
     global inImage, XSIZE, YSIZE
-    # fp : 해당 이미지의 내용이 저장
+    ''' fp : 해당 이미지의 내용이 저장
+        rb -> 이진값으로 읽는다. b가 없다면, 기본 문자열로 읽는다.'''
     fp = open(fname, 'rb')
 
     '''해당 이미지의 가로, 세로 픽셀의 수 / 즉 해당 이미지의 크기 만큼 반복을 한다.'''
@@ -16,6 +18,7 @@ def loadImage(fname) :
             ord() : 읽은 1byte[fp.read(1)]의 유니코드 값 리턴
             data : 한 픽셀의 rgb값'''
             data = int(ord(fp.read(1)))
+            # print(f"fp.read(1) 데이터 : {fp.read(1)}")
             # print(f"ord(fp.read(1)) 데이터 : {ord(fp.read(1))}")
             # print(f"data 의 값 : {data}")
 
@@ -23,11 +26,12 @@ def loadImage(fname) :
             # print(f"tempList 의 데이터 : {tmpList}")
 
         '''inImage : 메모리상에 있는 이미지의 rgb 값
-            256 X 256, 2차원 리스트의 형식'''
+            # 256 X 256, 2차원 리스트의 형식'''
         inImage.append(tmpList)
         # print(f"tempList 의 데이터 타입 : {tmpList[:]}")
         # print(f"inImage 의 데이터 타입 : {type(inImage)}")
-        # print(f"inImage 의 데이터 값 확인 : {inImage[:]}")        
+        # print(f"inImage 의 데이터 값 확인 : {inImage[:]}") 
+        # print(f"inImage 의 데이터 값 확인 : {inImage}")       
 
     fp.close()
 
@@ -44,6 +48,7 @@ def displayImage(image) :
         for k in range(0, YSIZE) :
             '''각 픽셀의 rgb 값'''
             data = image[i][k] 
+            # print(f"data 의 값 확인 : {data}")
             '''%02x : 16진수 표기법'''
             tmpString += "#%02x%02x%02x " % (data, data, data) # x 뒤에 한칸 공백
             # print(f"tmpString 데이터 확인하기 ================================ : {tmpString}")
@@ -68,8 +73,10 @@ paper = PhotoImage(width = XSIZE, height = YSIZE)
 canvas.create_image((XSIZE/2, YSIZE/2), image = paper, state = "normal")
 
 # 파일 --> 메모리
-filename = 'RAW/tree.raw'  # C:/CookAnalysis/RAW/tree.raw
-'''읽은 파일을 메모리상에 올림'''
+# filename = 'RAW/tree.raw'  # C:/CookAnalysis/RAW/tree.raw
+filename = 'RAW/cat256.raw'
+'''읽은 파일을 메모리상에 올림
+    확장자 raw : 테스트 용으로 만들어진 흑백사진 / 일반 사진은 안열림'''
 loadImage(filename)
 
 # 메모리 --> 화면 
