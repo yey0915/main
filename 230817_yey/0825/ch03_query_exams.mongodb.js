@@ -199,6 +199,15 @@ db.inventory.find({ tags: "red" }, { _id: false, item: false, qty: false });
 db.inventory.find({ tags: "red" }, { "tags.$": true });
 
 
+// $or: [{death_toll : 0}, {heavy_injury :0}]
+db.by_road_type.find({ $or:[{"교량위치.accident_count": 0},
+                            {"터널안.death_toll" : 0}]},
+                      {_id:false, city_or_province:true, county:true });
+
+
+
+
+
 
 
 
